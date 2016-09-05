@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table (name="Usuario")
@@ -22,12 +23,23 @@ public class Usuario {
 	@Column (name="telefone", nullable=false, length=11)
 	String telefone;
 	
-	@Column (name="login", nullable=false, length=20)
+	@Column (name="login", nullable=false, length=20, unique=true)
 	String login;
 	
 	@Column (name="senha", nullable=false, length=255)
 	String senha;
 	
+	@Transient
+	String confirmaSenha;
+	
+	public String getConfirmaSenha() {
+		return confirmaSenha;
+	}
+
+	public void setConfirmaSenha(String confirmaSenha) {
+		this.confirmaSenha = confirmaSenha;
+	}
+
 	@Column (name="rua", nullable=true, length=40)
 	String rua;
 	
