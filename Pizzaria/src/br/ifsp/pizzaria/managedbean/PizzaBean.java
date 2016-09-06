@@ -1,4 +1,4 @@
-package br.ifsp.pizzaria.managedBean;
+package br.ifsp.pizzaria.managedbean;
 
 import java.io.Serializable;
 

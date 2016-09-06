@@ -24,7 +24,8 @@ public class UsuarioRepository {
 	@SuppressWarnings("unchecked")
 	public Usuario verificarLogin(Usuario usuario){
 		try{
-			Query query = this.manager.createQuery("FROM Usuario  WHERE login = :login AND senha = :senha");
+			Query query = this.manager.
+						createQuery("SELECT u FROM Usuario u WHERE login = :login AND senha = :senha");
 			query.setParameter("login", usuario.getLogin());
 			query.setParameter("senha", usuario.getSenha());
 			return (Usuario) query.getSingleResult();
