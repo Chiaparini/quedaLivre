@@ -24,8 +24,8 @@ public class PizzaRepository {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List <Pizza> buscaTodas() {
-		Query query = this.manager.createQuery(" SELECT * FROM Pizza");
+	public List<Pizza> buscaTodas() {
+		Query query = this.manager.createQuery(" FROM Pizza ");
 		return query.getResultList();
 	}
 	
