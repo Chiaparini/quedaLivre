@@ -22,6 +22,11 @@
 			<h:inputText value="#{usuarioBean.login}"></h:inputText>
 			<h:outputLabel value="Senha: "></h:outputLabel>
 			<h:inputSecret value="#{usuarioBean.senha}"></h:inputSecret>
+			<h:outputLabel value="Tipo de Usuário: "></h:outputLabel>
+			<h:selectOneRadio value="#{usuarioBean.tipoUsuario}">
+				<f:selectItem itemValue="funcionario" itemLabel="Funcionário" />
+				<f:selectItem itemValue="cliente" itemLabel="Cliente" />
+			</h:selectOneRadio>
 		</h:panelGrid>
 		
 		<h:commandButton value="Continuar" action="#{usuarioBean.verLogin}"></h:commandButton>

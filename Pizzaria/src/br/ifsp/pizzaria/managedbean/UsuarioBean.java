@@ -82,9 +82,9 @@ public class UsuarioBean {
 			
 			em.getTransaction().begin();
 			
-			//Usuario usu = repo.busca(id);
+			Usuario usu = repo.busca(id);
 			
-			Usuario usu = (Usuario) em.find(Usuario.class, id);
+			//Usuario usu = (Usuario) em.find(Usuario.class, id);
 			
 			usu.setNome(nome);
 			usu.setTelefone(telefone);
@@ -155,7 +155,14 @@ public class UsuarioBean {
 			cidade = usuario.getCidade();
 			complemento = usuario.getComplemento();
 			
-			return "EditarFuncionario";
+			if(tipoUsuario.equals("funcionario")){
+				return "EditarFuncionario";
+			}
+			else{
+				return "EditarCliente";
+			}
+			
+			
 		}
 	}
 	
