@@ -10,6 +10,10 @@ import javax.persistence.Table;
 @Table (name="Pizza")
 public class Pizza {
 	
+	public Pizza(){
+		
+	}
+	
 	public Pizza(String sabor, double preco, String descricao) {
 		this.sabor = sabor;
 		this.preco = preco;
