@@ -53,30 +53,19 @@ public class PizzaBean implements Serializable{
 	}
 	
 	
-	public List<SelectItem> allPizzas(){
-		
-		EntityManagerFactory factory = 
-				Persistence.createEntityManagerFactory("pizzaria");
-		
-		EntityManager manager = factory.createEntityManager();
-		
-		PizzaRepository pizzaRepository = new PizzaRepository(manager);
+	public List<SelectItem> selecaoDePizzas(){
 
 		   List<SelectItem> items = new ArrayList<SelectItem>();
-		   List<Pizza> pizzaList = pizzaRepository.buscaTodas();
+		   List<Pizza> pizzaList = retornaTodos();
 		    for(Pizza pizza: pizzaList){
 		       items.add(new SelectItem(pizza.getId(), pizza.getSabor()));
 		   }
-		    
-		    manager.close();
-		     
-		    factory.close();
-		     
+
 		   return items;
 	}	
 
 
-	public Pizza buscar(int id){
+	public void buscar(){
 		EntityManagerFactory factory =
 				Persistence.createEntityManagerFactory("pizzaria");
 				System.out.println("Procurando por pizza de id :" + id);
@@ -90,8 +79,31 @@ public class PizzaBean implements Serializable{
 				
 				factory.close();
 				
-				return pizza;
+				this.descricao = pizza.getDescricao();
+				this.sabor = pizza.getSabor();
+				this.id = pizza.getId();
+				this.preco = pizza.getPreco();
+				
 	}
+	
+	public List<Pizza> retornaTodos(){
+		EntityManagerFactory factory = 
+				Persistence.createEntityManagerFactory("pizzaria");
+		
+		EntityManager manager = factory.createEntityManager();
+		
+		PizzaRepository pizzaRepository = new PizzaRepository(manager);
+
+		   List<SelectItem> items = new ArrayList<SelectItem>();
+		   List<Pizza> pizzaList = pizzaRepository.buscaTodas();
+		   
+		   manager.close();
+		     
+		   factory.close();
+		   
+		   return pizzaList;
+	}
+	
 	
 	public void setSabor(String sabor) {
 		this.sabor = sabor;
@@ -121,5 +133,6 @@ public class PizzaBean implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
+		System.out.println("setting id : "+ id);
 	}
 }

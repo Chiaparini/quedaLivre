@@ -23,8 +23,7 @@
 		valueChangeListener="#{pizzaBean.buscar(id)}"
 		onchange="submit()">
 		<f:selectItems
-			value="#{pizzaBean.allPizzas()}" />
-			<f:ajax event="change" update="@this" />
+			value="#{pizzaBean.selecaoDePizzas()}" />
 	</h:selectOneListbox>
 	
 	</h:panelGrid>
