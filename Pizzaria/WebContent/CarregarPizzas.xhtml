@@ -16,26 +16,18 @@
 <body>
 <f:view>
 <h:form>
-	<h1> Edite os valores para salvar : </h1>
-	
+	<h1> Selecione uma Pizza para editar : </h1>
 	<h:panelGrid>
 	
-	<h:outputLabel value ="Pizza de número : " for="id" />
-	<h:inputText id="id" name="id" value="#{pizzaBean.id}"/>
+	<h:selectOneListbox var="id" value="#{pizzaBean.id}">
+		<f:selectItems
+			value="#{pizzaBean.selecaoDePizzas()}" />
+	</h:selectOneListbox>
 	
-	<h:outputLabel value ="Sabor : " for="sabor" />
-	<h:inputText value="#{pizzaBean.sabor}" id="sabor" maxlenght="20" required="true"/>
-	
-	<h:outputLabel value="Preço : " for="preco" /> 
-	<h:inputText value="#{pizzaBean.preco}" id="preco" converterMessage="Somente numeros" required="true"/>
-	
-	<h:outputLabel value ="Descricao : " for="descricao" />
-	<h:inputTextarea value="#{pizzaBean.descricao}" id="descricao" maxlenght="100" required="true" />
 	</h:panelGrid>
 	
-	<h:commandButton value="Cancelar" action="#{pizzaBean.goToIndex()}" /> 	
-	<h:commandButton value="Editar" action="#{pizzaBean.editarPizza()}" /> 		
-	<h:commandButton value="Deletar" action="#{pizzaBean.deletar()}" /> 	
+	<h:commandButton value="Editar" action="#{pizzaBean.carregarEdicao()}" />
+	<h:button value="Cancelar" /> 
 	
 	</h:form>
 </f:view>

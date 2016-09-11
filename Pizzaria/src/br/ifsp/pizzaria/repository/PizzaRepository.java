@@ -19,6 +19,10 @@ public class PizzaRepository {
 		this.manager.persist(pizza);
 	}
 	
+	public void deletar(int id){
+		this.manager.remove(busca(id));
+	}
+	
 	public Pizza busca(int id){
 		return this.manager.find(Pizza.class, id);
 	}

@@ -19,17 +19,18 @@
 	<h1> Cadastre uma nova Pizza: </h1>
 	<h:panelGrid>
 	<h:outputLabel value ="Sabor : " for="sabor" />
-	<h:inputText value="#{pizzaBean.sabor}" id="sabor" maxlenght="20" />
+	<h:inputText value="#{pizzaBean.sabor}" id="sabor" maxlenght="20" required="true" />
 	
 	<h:outputLabel value="Preço : " for="preco" /> 
-	<h:inputText value="#{pizzaBean.preco}" id="preco" converterMessage="Somente numeros" />
+	<h:inputText value="#{pizzaBean.preco}" id="preco" converterMessage="Somente numeros" required="true"/>
 	
 	<h:outputLabel value ="Descricao : " for="descricao" />
-	<h:inputTextarea value="#{pizzaBean.descricao}" id="descricao" maxlenght="100" />
+	<h:inputTextarea value="#{pizzaBean.descricao}" id="descricao" maxlenght="100" required="true" />
 	</h:panelGrid>
 		
 	<h:commandButton value="Salvar" action="#{pizzaBean.cadastrarPizza()}" />
 	<h:button value="Limpar" />
+	
 	
 	</h:form>
 </f:view>

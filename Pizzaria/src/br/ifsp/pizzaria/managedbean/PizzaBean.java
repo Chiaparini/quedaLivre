@@ -16,6 +16,8 @@ import br.ifsp.pizzaria.repository.PizzaRepository;
 @ManagedBean
 public class PizzaBean implements Serializable{
 
+	Pizza pizza = new Pizza();
+	
 	public PizzaBean(){
 	}
 	private static final long serialVersionUID = 1L;
@@ -52,6 +54,46 @@ public class PizzaBean implements Serializable{
 		
 	}
 	
+	public String carregarEdicao(){
+		buscar();
+		System.out.println("id :" + this.id);
+		return "EditarPizza";
+	}
+	
+	public String editarPizza(){
+		
+		EntityManagerFactory factory =
+				Persistence.createEntityManagerFactory("pizzaria");
+				
+		EntityManager manager = factory.createEntityManager();
+				
+		PizzaRepository pizzaRepository = new PizzaRepository(manager);
+
+		System.out.println("Id do objeto : " + pizza.getId() );
+
+		Pizza pizza = pizzaRepository.busca(id);
+		
+		System.out.println("Pizza atual" + pizza.getDescricao() + " sabor: "+ pizza.getSabor()+ " preco:" + pizza.getPreco());
+
+		System.out.println("Alterando para" + descricao + " sabor: "+ sabor+ " preco:" + preco);
+		
+		pizza.setDescricao(this.descricao);
+		pizza.setPreco(this.preco);
+		pizza.setSabor(this.sabor);
+		
+		manager.getTransaction().begin();
+		
+		manager.merge(pizza);
+		
+		manager.getTransaction().commit();
+		
+		manager.close();
+		
+		factory.close();
+		
+		return "index";
+		
+	}
 	
 	public List<SelectItem> selecaoDePizzas(){
 
@@ -63,15 +105,19 @@ public class PizzaBean implements Serializable{
 
 		   return items;
 	}	
+	
+	
 
-
-	public void buscar(){
+	private void buscar(){
 		EntityManagerFactory factory =
 				Persistence.createEntityManagerFactory("pizzaria");
 				System.out.println("Procurando por pizza de id :" + id);
 				
 				EntityManager manager = factory.createEntityManager();
-				Pizza pizza = (Pizza) manager.find(Pizza.class, id);
+				
+				PizzaRepository pizzaRepository = new PizzaRepository(manager);
+				
+				Pizza pizza = pizzaRepository.busca(id);
 				
 				System.out.println("Pizza: " + pizza.getSabor() + " - " + pizza.getId());
 				
@@ -83,7 +129,7 @@ public class PizzaBean implements Serializable{
 				this.sabor = pizza.getSabor();
 				this.id = pizza.getId();
 				this.preco = pizza.getPreco();
-				
+				this.pizza = pizza;
 	}
 	
 	public List<Pizza> retornaTodos(){
@@ -104,6 +150,27 @@ public class PizzaBean implements Serializable{
 		   return pizzaList;
 	}
 	
+	public String deletar(){
+		
+		EntityManagerFactory factory = 
+				Persistence.createEntityManagerFactory("pizzaria");
+		
+		EntityManager manager = factory.createEntityManager();
+		
+		PizzaRepository pizzaRepository = new PizzaRepository(manager);
+		
+		manager.getTransaction().begin();
+
+		pizzaRepository.deletar(id);
+			
+		manager.getTransaction().commit();
+		
+		manager.close();
+		     
+	    factory.close();
+		   
+		return "index";
+	}
 	
 	public void setSabor(String sabor) {
 		this.sabor = sabor;
@@ -134,5 +201,9 @@ public class PizzaBean implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 		System.out.println("setting id : "+ id);
+	}
+	
+	public String goToIndex(){
+		return "index";
 	}
 }

@@ -24,6 +24,10 @@ public class Pizza {
 	@GeneratedValue
 	int id;
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Column (name="sabor", nullable=false, length=20)
 	private String sabor;
 	
