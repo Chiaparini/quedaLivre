@@ -1,0 +1,35 @@
+package br.ifsp.pizzaria.repository;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import br.ifsp.pizzaria.entities.Pedido;
+import br.ifsp.pizzaria.entities.Pizza;
+
+public class PedidoRepository {
+
+	public PedidoRepository(EntityManager manager) {
+		this.manager = manager;
+	}
+	
+	private EntityManager manager;
+	
+	public void adiciona(Pedido pedido){
+		this.manager.persist(pedido);
+	}
+	
+	public Pedido busca(int id) {
+		return this.manager.find(Pedido.class, id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Pedido> buscaTodos() {
+		Query query = this.manager.createQuery(" FROM Pedido ");
+		return query.getResultList();
+	}
+	
+	
+	
+}
