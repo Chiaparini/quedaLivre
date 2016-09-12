@@ -21,16 +21,23 @@
 	<h:panelGrid>
 	
 	<h:outputLabel value ="Pizza de número : " for="id" />
-	<h:inputText id="id" name="id" value="#{pizzaBean.id}"/>
+	<h:inputText id="id" name="id" readonly="#{facesContext.renderResponse}" value="#{pizzaBean.id}" />
 	
 	<h:outputLabel value ="Sabor : " for="sabor" />
-	<h:inputText value="#{pizzaBean.sabor}" id="sabor" maxlenght="20" required="true"/>
+	<h:inputText value="#{pizzaBean.sabor}" id="sabor"  requiredMessage="Campo obrigatorio" maxlenght="20" required="true" >
+			<f:validateLength minimum="3" maximum="20" />
+	</h:inputText>
+	<h:message style="color:red;margin:8px;" for="sabor" showDetail="false" showSummary="true"/>
 	
 	<h:outputLabel value="Preço : " for="preco" /> 
-	<h:inputText value="#{pizzaBean.preco}" id="preco" converterMessage="Somente numeros" required="true"/>
+	<h:inputText value="#{pizzaBean.preco}" id="preco" requiredMessage="Campo obrigatorio" converterMessage="Somente numeros" required="true"/>
+	<h:message style="color:red;margin:8px;" for="preco" showDetail="false" showSummary="true"/>
 	
 	<h:outputLabel value ="Descricao : " for="descricao" />
-	<h:inputTextarea value="#{pizzaBean.descricao}" id="descricao" maxlenght="100" required="true" />
+	<h:inputTextarea value="#{pizzaBean.descricao}" id="descricao"  requiredMessage="Campo obrigatorio"  maxlenght="100" required="true" >
+			<f:validateLength minimum="3" maximum="100" />	
+	</h:inputTextarea>		
+	<h:message style="color:red;margin:8px;" for="descricao" showDetail="false" showSummary="true"/>
 	</h:panelGrid>
 	
 	<h:commandButton value="Cancelar" action="#{pizzaBean.goToIndex()}" /> 	

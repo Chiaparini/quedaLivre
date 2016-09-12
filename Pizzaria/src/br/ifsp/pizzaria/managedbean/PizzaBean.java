@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -205,5 +206,9 @@ public class PizzaBean implements Serializable{
 	
 	public String goToIndex(){
 		return "index";
+	}
+	
+	public boolean isReadonly() { 
+	    return FacesContext.getCurrentInstance().getRenderResponse();
 	}
 }
