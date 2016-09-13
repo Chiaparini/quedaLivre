@@ -28,7 +28,7 @@ public class PizzaBean implements Serializable{
 	private String descricao;
 	
 	public String cadastrarPizza(){
-		
+		try{
 		Pizza pizza = new Pizza(sabor,preco,descricao);
 		
 		EntityManagerFactory factory = 
@@ -52,6 +52,9 @@ public class PizzaBean implements Serializable{
 		System.out.println("Pizza: " + sabor + " preco: " + preco);
 		
 		return "SucessoPizza";
+		}catch(Exception e){
+			return "Ops";
+		}
 		
 	}
 	
@@ -63,6 +66,7 @@ public class PizzaBean implements Serializable{
 	
 	public String editarPizza(){
 		
+		try{
 		EntityManagerFactory factory =
 				Persistence.createEntityManagerFactory("pizzaria");
 				
@@ -92,7 +96,11 @@ public class PizzaBean implements Serializable{
 		
 		factory.close();
 		
-		return "index";
+		return "SucessoEdicaoPizza";
+		
+		}catch(Exception e){
+			return "Ops";
+		}
 		
 	}
 	
@@ -141,7 +149,6 @@ public class PizzaBean implements Serializable{
 		
 		PizzaRepository pizzaRepository = new PizzaRepository(manager);
 
-		   List<SelectItem> items = new ArrayList<SelectItem>();
 		   List<Pizza> pizzaList = pizzaRepository.buscaTodas();
 		   
 		   manager.close();
@@ -152,7 +159,7 @@ public class PizzaBean implements Serializable{
 	}
 	
 	public String deletar(){
-		
+		try{
 		EntityManagerFactory factory = 
 				Persistence.createEntityManagerFactory("pizzaria");
 		
@@ -170,7 +177,10 @@ public class PizzaBean implements Serializable{
 		     
 	    factory.close();
 		   
-		return "index";
+		return "SucessoDelecaoPizza";
+		}catch(Exception e){
+			return "Ops";
+		}
 	}
 	
 	public void setSabor(String sabor) {

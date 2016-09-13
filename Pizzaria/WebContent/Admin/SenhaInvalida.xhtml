@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:f="http://java.sun.com/jsf/core" 
-xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"  version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" version="2.0">
     <jsp:directive.page language="java"
         contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
     <jsp:text>
@@ -12,17 +11,11 @@ xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelet
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Pizza Cadastrada</title>
+<title>Senha Inválida</title>
 </head>
 <body>
 <f:view>
-<div id="header">
-		<ui:insert name="header" >
-		  <ui:include src="Header.xhtml" />
-		</ui:insert>
- </div>
-	<h:outputLabel value="Cadastro de Pizza"/> <br/> <br/>
-	<h:outputLabel value="Pizza #{pizzaBean.sabor} cadastrada com sucesso!"/> <br/> <br/>
+	<h:outputLabel value="Senha Inválida"></h:outputLabel>
 	<h:button value="OK" outcome="index"/>
 </f:view>
 </body>
