@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
- xmlns:p="http://primefaces.org/ui" version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:f="http://java.sun.com/jsf/core" 
+xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" version="2.0">
     <jsp:directive.page language="java"
         contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
     <jsp:text>
@@ -16,39 +16,12 @@
 </h:head>
 <body>
 <f:view>	
-	<h:form>
- 
-<p:megaMenu orientation="horizontal" style="margin-top:20px">
-    <p:submenu label="Pizza" >
-        <p:column>
-            <p:submenu label="Gerenciar Pizzas">
-                <p:menuitem value="Cadastro de Pizza" url="Admin/CadastroPizza.xhtml" />
-                <p:menuitem value="Edição de Pizza" url="Admin/CarregarPizzas.xhtml" />
-            </p:submenu>
-        </p:column>
- 	</p:submenu>
-       
-    <p:submenu label="Pedidos" icon="ui-icon-document">
- 
-        <p:column>
-            <p:submenu label="Gerenciar Pedidos">
-                <p:menuitem value="Adicionar aqui Lucas" url="#" />
-            </p:submenu>
-        </p:column>
-    </p:submenu>
- 
-    <p:submenu label="Perfil" icon="ui-icon-pencil">
-        <p:column>
-            <p:submenu label="Gerenciar Perfil">
-                <p:menuitem value="Editar Perfil" url="Admin/EditarFuncionario.xhtml" />
-            </p:submenu>
-        </p:column>
-    </p:submenu>
- 
-    <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />
-</p:megaMenu>
 
-	</h:form>
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="Header.xhtml" />
+		</ui:insert>
+	</div>
 
 </f:view>
 </body>

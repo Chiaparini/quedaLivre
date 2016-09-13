@@ -139,7 +139,7 @@ public class UsuarioBean {
 		factory.close();
 		
 		if(usuario == null){
-			return "Senha Inválida";
+			return "SenhaInvalida";
 		}
 		else{
 			
