@@ -72,48 +72,53 @@ public class UsuarioBean {
 	
 	public String alterarUsuario(){
 		
-		if(senha.equals(confirmaSenha) || senha.equals("")){
-			
-			EntityManagerFactory factory = Persistence.createEntityManagerFactory("pizzaria");
-			
-			EntityManager em = factory.createEntityManager();
-			
-			UsuarioRepository repo = new UsuarioRepository(em);
-			
-			em.getTransaction().begin();
-			
-			Usuario usu = repo.busca(id);
-			
-			//Usuario usu = (Usuario) em.find(Usuario.class, id);
-			
-			usu.setNome(nome);
-			usu.setTelefone(telefone);
-			usu.setLogin(login);
-			if(!senha.equals("")){
-				usu.setSenha(senha);
-				usu.setConfirmaSenha(confirmaSenha);
+		try{
+			if(senha.equals(confirmaSenha) || senha.equals("")){
+				
+				EntityManagerFactory factory = Persistence.createEntityManagerFactory("pizzaria");
+				
+				EntityManager em = factory.createEntityManager();
+				
+				UsuarioRepository repo = new UsuarioRepository(em);
+				
+				em.getTransaction().begin();
+				
+				Usuario usu = repo.busca(id);
+				
+				//Usuario usu = (Usuario) em.find(Usuario.class, id);
+				
+				usu.setNome(nome);
+				usu.setTelefone(telefone);
+				usu.setLogin(login);
+				if(!senha.equals("")){
+					usu.setSenha(senha);
+					usu.setConfirmaSenha(confirmaSenha);
+				}
+				usu.setRua(rua);
+				usu.setNumero(numero);
+				usu.setBairro(bairro);
+				usu.setCep(cep);
+				usu.setCidade(cidade);
+				usu.setComplemento(complemento);
+	
+				em.merge(usu);
+				
+				em.getTransaction().commit();
+				
+				em.close();
+				factory.close();
+				
+				
+				System.out.println("Dados do usuário " + usu.getNome() + " alterados com sucesso");
+				
+				return "RespostaEditaUsuario";
 			}
-			usu.setRua(rua);
-			usu.setNumero(numero);
-			usu.setBairro(bairro);
-			usu.setCep(cep);
-			usu.setCidade(cidade);
-			usu.setComplemento(complemento);
-
-			em.merge(usu);
-			
-			em.getTransaction().commit();
-			
-			em.close();
-			factory.close();
-			
-			
-			System.out.println("Dados do usuário " + usu.getNome() + " alterados com sucesso");
-			
-			return "RespostaEditaUsuario";
+			else{
+				return "SenhaInvalida";
+			}
 		}
-		else{
-			return "SenhaInvalida";
+		catch(NullPointerException e){
+			return "Ops";
 		}
 	}
 	
