@@ -24,20 +24,26 @@ public class PedidoBean implements Serializable {
 	private Date data;
 	private double total;
 	private Pizza pizza;
-	
+	private int quantidade;
+
 	public String novoPedido() {
 		
 		this.status = "Aberto";
+		this.total = this.pizza.getPreco() * this.quantidade;
+		
+		this.pizzas.add(this.pizza);
 		
 		Pedido pedido = new Pedido(this.pizzas, this.usuario, this.data, this.total, this.status);
-		
+		System.out.println(pedido);
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("Pizzaria");
 		EntityManager manager = factory.createEntityManager();
 		PedidoRepository repo = new PedidoRepository(manager);
 		
 		
+		try{
 		manager.getTransaction().begin();
+		
 		
 		repo.adiciona(pedido);
 		
@@ -47,7 +53,10 @@ public class PedidoBean implements Serializable {
 		
 		factory.close();
 		
-		return "SuccessPedido";		
+		return "Ops";	
+		}catch(Exception e) {
+			return "Ops";
+		}	
 	}
 	
 	
@@ -87,9 +96,9 @@ public class PedidoBean implements Serializable {
 	
 	public List<Pizza> buscaTodasPizzas() {
 		PizzaBean pb = new PizzaBean();
-		
 		return pb.retornaTodos();
 	}
+	
 	
 	public List<Pizza> getPizzas() {
 		return pizzas;
@@ -150,4 +159,12 @@ public class PedidoBean implements Serializable {
 		this.pizza = pizza;
 	}
 
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
 }

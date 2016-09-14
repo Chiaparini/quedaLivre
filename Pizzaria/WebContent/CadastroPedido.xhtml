@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" version="2.0">
     <jsp:directive.page language="java"
         contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
     <jsp:text>
@@ -11,18 +12,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+<title>Fazer pedido</title>
 </head>
 <body>
 <f:view>
+
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="Header.xhtml" />
+		</ui:insert>
+	</div>
+
+<h:form>
 	<h:panelGrid>
-	
-	<h:selectOneListbox var="id" value="#{pedidoBean.pizza.id}">
+	<h:outputLabel value="Escolha sua pizza: " style="font-weight:bold" />
+	<h:selectOneListbox var="id" value="#{pedidoBean.pizza}">
 		<f:selectItems
-			value="#{pedidoBean.buscaTodasPizzas()}" />
+			value="#{pedidoBean.buscaTodasPizzas()}"  var="pizza" itemLabel="#{pizza.sabor}" itemValue="#{pizza.id}"/>
 	</h:selectOneListbox>
 	
+	    <h:outputLabel value="Quantidade: " style="font-weight:bold" />
+        <h:inputText value="#{pedidoBean.quantidade}" />
+        
+        
 	</h:panelGrid>
+	
+	<h:commandButton value="Realizar pedido" action="#{pedidoBean.novoPedido}">
+    	</h:commandButton>
+</h:form>
+
 </f:view>
 </body>
 </html>
