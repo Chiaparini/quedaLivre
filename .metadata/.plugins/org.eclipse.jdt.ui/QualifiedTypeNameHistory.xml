@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.persistence.EntityManagerFactory"/>
+<fullyQualifiedTypeName name="javax.persistence.Persistence"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
+<fullyQualifiedTypeName name="br.ifsp.pizzaria.repository.PedidoRepository"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="br.ifsp.pizzaria.entities.Pizza"/>
+<fullyQualifiedTypeName name="br.ifsp.pizzaria.entities.Usuario"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="br.ifsp.pizzaria.entities.Pedido"/>
+</qualifiedTypeNameHistroy>

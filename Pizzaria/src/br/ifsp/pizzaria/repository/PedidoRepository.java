@@ -25,6 +25,14 @@ public class PedidoRepository {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Pedido> pedidosUsuario(int id) {
+		Query query = manager.createQuery(" FROM Pedido WHERE usuario_id = :id");
+		query.setParameter("id", id);
+		
+		return query.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Pedido> buscaTodos() {
 		Query query = this.manager.createQuery(" FROM Pedido ");
 		return query.getResultList();

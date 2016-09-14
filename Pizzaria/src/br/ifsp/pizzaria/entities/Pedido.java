@@ -22,11 +22,12 @@ public class Pedido {
 		
 	}
 	
-	public Pedido(List<Pizza> pizzas, Usuario usuario, Date data, double total){
+	public Pedido(List<Pizza> pizzas, Usuario usuario, Date data, double total, String status){
 		this.pizzas = pizzas;
 		this.usuario = usuario;
 		this.data = data;
 		this.total = total;
+		this.status = status;
 	}
 	
 	
@@ -37,7 +38,7 @@ public class Pedido {
 	@Column (name="status", nullable=false, length=40)
 	private String status;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="pedido",
+	@OneToMany(fetch=FetchType.LAZY,
 			targetEntity=Pizza.class)
 	private List<Pizza> pizzas;
 	
