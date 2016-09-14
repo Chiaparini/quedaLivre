@@ -10,35 +10,20 @@ xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelet
         <![CDATA[ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> ]]>
     </jsp:text>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<h:head>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Login</title>
-</h:head>
+<title> Histórico de Pedidos </title>
+</head>
 <body>
 <f:view>
-
 	<div id="header">
-		<ui:insert name="header" >
-		  <ui:include src="Header.xhtml" />
+		<ui:insert name="header">
+			<ui:include src="Header.xhtml" />
 		</ui:insert>
- 	</div>
- 	
+	</div>
+	
 	<h:form>
-		<h:outputLabel value="Faça o login para continuar"/> <br/> <br/>
-		<h:panelGrid>
-			<h:outputLabel value="Login: "></h:outputLabel>
-			<h:inputText value="#{usuarioBean.login}"></h:inputText>
-			<h:outputLabel value="Senha: "></h:outputLabel>
-			<h:inputSecret value="#{usuarioBean.senha}"></h:inputSecret>
-			<h:outputLabel value="Tipo de Usuário: "></h:outputLabel>
-			<h:selectOneRadio value="#{usuarioBean.tipoUsuario}">
-				<f:selectItem itemValue="funcionario" itemLabel="Funcionário" />
-				<f:selectItem itemValue="cliente" itemLabel="Cliente" />
-			</h:selectOneRadio>
-		</h:panelGrid>
-		
-		<h:commandButton value="Continuar" action="#{usuarioBean.verLogin('EditarFuncionario')}"></h:commandButton>
-		
+		<h:outputLabel value="Histórico de Pedidos do Cliente #{usuarioBean.nome}"></h:outputLabel> <br/> <br />
 	</h:form>
 </f:view>
 </body>

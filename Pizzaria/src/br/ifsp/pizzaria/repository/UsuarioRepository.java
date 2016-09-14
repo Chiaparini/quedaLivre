@@ -26,9 +26,10 @@ public class UsuarioRepository {
 	public Usuario verificarLogin(Usuario usuario){
 		try{
 			Query query = this.manager.
-						createQuery("SELECT u FROM Usuario u WHERE login = :login AND senha = :senha");
+						createQuery("SELECT u FROM Usuario u WHERE login = :login AND senha = :senha AND tipoUsuario = :tipoUsuario");
 			query.setParameter("login", usuario.getLogin());
 			query.setParameter("senha", usuario.getSenha());
+			query.setParameter("tipoUsuario", usuario.getTipoUsuario());
 			return (Usuario) query.getSingleResult();
 		}
 		catch(NoResultException e){

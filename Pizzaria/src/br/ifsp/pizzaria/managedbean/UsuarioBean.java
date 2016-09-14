@@ -122,7 +122,7 @@ public class UsuarioBean {
 		}
 	}
 	
-	public String verLogin(){
+	public String verLogin(String pagina){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pizzaria");
 		EntityManager em = factory.createEntityManager();
 		
@@ -132,6 +132,7 @@ public class UsuarioBean {
 		
 		usuario.setLogin(login);
 		usuario.setSenha(senha);
+		usuario.setTipoUsuario(tipoUsuario);
 		
 		
 		em.getTransaction().begin();
@@ -160,12 +161,14 @@ public class UsuarioBean {
 			cidade = usuario.getCidade();
 			complemento = usuario.getComplemento();
 			
-			if(tipoUsuario.equals("funcionario")){
+			return pagina;
+			
+			/*if(tipoUsuario.equals("funcionario")){
 				return "EditarFuncionario";
 			}
 			else{
 				return "EditarCliente";
-			}
+			}*/
 			
 			
 		}
