@@ -19,13 +19,18 @@
 
 	<h:form>
  
-<p:megaMenu orientation="horizontal" style="margin-top:20px">
+<p:megaMenu orientation="horizontal">
+     <p:menuitem value="Pizzaria Queda Livre" url="index.xhtml" />
+
     <p:submenu label="Pizza" >
         <p:column>
             <p:submenu label="Gerenciar Pizzas">
                 <p:menuitem value="Cadastro de Pizza" url="CadastroPizza.xhtml" />
                 <p:menuitem value="Edição de Pizza" url="CarregarPizzas.xhtml" />
             </p:submenu>
+        </p:column>
+        <p:column>        
+            <img src="imagens/pizza.gif" width="200" class="content"/>
         </p:column>
  	</p:submenu>
        
