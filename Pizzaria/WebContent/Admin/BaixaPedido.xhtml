@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:f="http://java.sun.com/jsf/core" 
+xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" version="2.0">
+    <jsp:directive.page language="java"
+        contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+    <jsp:text>
+        <![CDATA[ <?xml version="1.0" encoding="ISO-8859-1" ?> ]]>
+    </jsp:text>
+    <jsp:text>
+        <![CDATA[ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> ]]>
+    </jsp:text>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Baixar Pedido</title>
+</h:head>
+<body>
+<f:view>
+
+	<div id="header">
+		<ui:insert name="header" >
+		  <ui:include src="Header.xhtml" />
+		</ui:insert>
+ 	</div>
+ 	
+ 	<h:form>
+		<h:dataTable value="#{usuarioBean.pedidos}" var="pedido" columnClasses="col, col, col, col">
+			<f:facet name="header"> <h:outputLabel value="Alteração de pedidos:"></h:outputLabel> </f:facet>
+				<h:column style="width:1000px;">
+					<f:facet name="header">Data: </f:facet>
+					#{pedido.data}
+				</h:column>
+				<h:column style="width:1000px;">
+					<f:facet name="header">Usuario: </f:facet>
+					#{pedido.usuario.getNome()}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Preço Total: </f:facet>
+					#{pedido.total}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Status: </f:facet>
+					#{pedido.status}
+				</h:column>
+				
+		</h:dataTable>
+		
+	</h:form>
+	
+	<h:commandbutton value="Fechar pedido" action="#{pedidoBean.setStatus}" />
+
+</f:view>
+</body>
+</html>
+</jsp:root>
