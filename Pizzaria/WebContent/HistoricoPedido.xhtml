@@ -11,6 +11,7 @@ xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelet
     </jsp:text>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<h:outputStylesheet library="css" name="col.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title> Histórico de Pedidos </title>
 </head>
@@ -23,7 +24,25 @@ xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelet
 	</div>
 	
 	<h:form>
-		<h:outputLabel value="Histórico de Pedidos do Cliente #{usuarioBean.nome}"></h:outputLabel> <br/> <br />
+		<h:dataTable value="#{usuarioBean.pedidos}" var="pedido" columnClasses="col, col, col">
+			<f:facet name="header"> <h:outputLabel value="Histórico de Pedidos do Cliente #{usuarioBean.nome}"></h:outputLabel> </f:facet>
+				<h:column style="width:1000px;">
+					<f:facet name="header">Data: </f:facet>
+					#{pedido.data}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Status: </f:facet>
+					#{pedido.status}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Preço Total: </f:facet>
+					#{pedido.total}
+				</h:column>
+				
+		</h:dataTable>
+		
 	</h:form>
 </f:view>
 </body>

@@ -60,14 +60,14 @@ public class PedidoBean implements Serializable {
 	}
 	
 	
-	public List<Pedido> historicoUsuario(){
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("Pizzaria");
+	public List<Pedido> historicoUsuario(int id){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pizzaria");
 		EntityManager manager = factory.createEntityManager();
 		PedidoRepository repoPedido = new PedidoRepository(manager);
 		
 		manager.getTransaction().begin();
 		
-		List<Pedido> pedidos = repoPedido.pedidosUsuario(usuarioId);
+		List<Pedido> pedidos = repoPedido.pedidosUsuario(id);
 		
 		manager.close();
 		

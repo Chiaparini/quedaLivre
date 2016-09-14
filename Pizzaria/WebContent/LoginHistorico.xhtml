@@ -33,14 +33,14 @@ xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelet
 			<h:outputLabel value="Senha: "></h:outputLabel>
 			<h:inputSecret value="#{usuarioBean.senha}"></h:inputSecret>
 
-			<h:selectOneRadio value="#{usuarioBean.tipoUsuario}">
+			<h:selectOneRadio value="#{usuarioBean.tipoUsuario}" >
 			   	<f:selectItem itemValue="cliente" itemLabel="Cliente" />
 		   	</h:selectOneRadio>
 			
 			
 		</h:panelGrid>
 		
-		<h:commandButton value="Continuar" action="#{usuarioBean.verLogin('HistoricoPedido')}"></h:commandButton>
+		<h:commandButton value="Continuar" action="#{usuarioBean.verHistorico}"></h:commandButton>
 	</h:form>
 </f:view>
 </body>

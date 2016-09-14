@@ -1,10 +1,13 @@
 package br.ifsp.pizzaria.managedbean;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.ifsp.pizzaria.entities.Pedido;
 import br.ifsp.pizzaria.entities.Usuario;
 import br.ifsp.pizzaria.repository.UsuarioRepository;
 
@@ -24,7 +27,16 @@ public class UsuarioBean {
 	private String cep;
 	private String cidade;
 	private String complemento;
+	private List<Pedido> pedidos;
 	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
 	public String cadastrarUsuario(String tipo){
 		
 		
@@ -163,6 +175,8 @@ public class UsuarioBean {
 			
 			return pagina;
 			
+			
+			
 			/*if(tipoUsuario.equals("funcionario")){
 				return "EditarFuncionario";
 			}
@@ -171,6 +185,51 @@ public class UsuarioBean {
 			}*/
 			
 			
+		}
+	}
+	
+	public String verHistorico(){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pizzaria");
+		EntityManager em = factory.createEntityManager();
+		
+		UsuarioRepository repo = new UsuarioRepository(em);
+		Usuario usuario = new Usuario();
+		Usuario result = new Usuario();
+		
+		usuario.setLogin(login);
+		usuario.setSenha(senha);
+		usuario.setTipoUsuario(tipoUsuario);
+		
+		
+		em.getTransaction().begin();
+		
+		usuario = repo.verificarLogin(usuario);
+		
+		em.getTransaction().commit();
+		
+		em.close();
+		factory.close();
+		
+		if(usuario == null){
+			return "SenhaInvalida";
+		}
+		else{
+			
+			id = usuario.getId();
+			nome = usuario.getNome();
+			telefone = usuario.getTelefone();
+			login = usuario.getLogin();
+			senha = "";
+			rua = usuario.getRua();
+			numero = usuario.getNumero();
+			bairro = usuario.getBairro();
+			cep = usuario.getCep();
+			cidade = usuario.getCidade();
+			complemento = usuario.getComplemento();
+		
+			PedidoBean pedidob = new PedidoBean();
+			this.pedidos = pedidob.historicoUsuario(id);
+			return "HistoricoPedido";
 		}
 	}
 	
