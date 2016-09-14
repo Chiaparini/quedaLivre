@@ -1,7 +1,7 @@
 package br.ifsp.pizzaria.managedbean;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -13,6 +13,7 @@ import br.ifsp.pizzaria.entities.Pedido;
 import br.ifsp.pizzaria.entities.Pizza;
 import br.ifsp.pizzaria.entities.Usuario;
 import br.ifsp.pizzaria.repository.PedidoRepository;
+import br.ifsp.pizzaria.repository.PizzaRepository;
 
 @ManagedBean
 public class PedidoBean implements Serializable {
@@ -21,39 +22,58 @@ public class PedidoBean implements Serializable {
 	private List<Pizza> pizzas;
 	private String status;
 	private Usuario usuario;
-	private Date data;
 	private double total;
+	private Date data;
 	private Pizza pizza;
 	private int quantidade;
+	private int idPizza;
 
 	public String novoPedido() {
 		
-		this.status = "Aberto";
-		this.total = this.pizza.getPreco() * this.quantidade;
-		
-		this.pizzas.add(this.pizza);
-		
-		Pedido pedido = new Pedido(this.pizzas, this.usuario, this.data, this.total, this.status);
-		System.out.println(pedido);
-		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("Pizzaria");
-		EntityManager manager = factory.createEntityManager();
-		PedidoRepository repo = new PedidoRepository(manager);
-		
 		
 		try{
-		manager.getTransaction().begin();
 		
+			for(Pizza p : this.pizzas) {
+				if(p.getId() == this.idPizza) {
+					this.pizza = p;
+				}
+			}
+			System.out.println("AEAE " + this.pizza.getSabor());
+			
+			this.total = this.pizza.getPreco() * this.quantidade;
+			
+			this.pizzas.clear();
+			
+			for(int i = 1; i < this.quantidade; i++) {
+				this.pizzas.add(this.pizza);
+			}
+			
+			this.pizzas.add(this.pizza);
+			Date d = new Date();
+			this.data = d;
+			this.status = "Aberto";
+			
+			Pedido pedido = new Pedido(this.pizzas, this.usuario, this.data, this.total, this.status);
+
+			pedido.setPizzas(pizzas);
+			pedido.setStatus(this.status);
+			pedido.setTotal(this.total);
+			
+			
+			EntityManagerFactory factory = Persistence.createEntityManagerFactory("pizzaria");
+			EntityManager manager = factory.createEntityManager();
+			PedidoRepository repo = new PedidoRepository(manager);
+			manager.getTransaction().begin();
 		
-		repo.adiciona(pedido);
+			repo.adiciona(pedido);
 		
-		manager.getTransaction().commit();
+			manager.getTransaction().commit();
 		
-		manager.close();
+			manager.close();
 		
-		factory.close();
+			factory.close();
 		
-		return "Ops";	
+		return "SucessoPedido";	
 		}catch(Exception e) {
 			return "Ops";
 		}	
@@ -96,6 +116,7 @@ public class PedidoBean implements Serializable {
 	
 	public List<Pizza> buscaTodasPizzas() {
 		PizzaBean pb = new PizzaBean();
+		this.pizzas = pb.retornaTodos();
 		return pb.retornaTodos();
 	}
 	
@@ -166,5 +187,14 @@ public class PedidoBean implements Serializable {
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
+	}
+	
+	public int getIdPizza() {
+		return idPizza;
+	}
+
+
+	public void setIdPizza(int idPizza) {
+		this.idPizza = idPizza;
 	}
 }
