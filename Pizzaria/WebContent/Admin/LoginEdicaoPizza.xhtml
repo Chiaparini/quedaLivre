@@ -12,7 +12,7 @@ xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelet
 <html xmlns="http://www.w3.org/1999/xhtml">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Baixar Pedido</title>
+<title>Login</title>
 </h:head>
 <body>
 <f:view>
@@ -23,32 +23,22 @@ xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelet
 		</ui:insert>
  	</div>
  	
- 	<h:form>
-		<h:dataTable value="#{usuarioBean.pedidos}" var="pedido" columnClasses="col, col, col, col">
-			<f:facet name="header"> <h:outputLabel value="Alteração de pedidos:"></h:outputLabel> </f:facet>
-				<h:column style="width:1000px;">
-					<f:facet name="header">Data: </f:facet>
-					#{pedido.data}
-				</h:column>
-				<h:column style="width:1000px;">
-					<f:facet name="header">Usuario: </f:facet>
-					#{pedido.usuario.getNome()}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Preço Total: </f:facet>
-					#{pedido.total}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Status: </f:facet>
-					#{pedido.status}
-				</h:column>
-				
-		</h:dataTable>
+	<h:form>
+		<h:outputLabel value="Faça o login para continuar"/> <br/> <br/>
+		<h:panelGrid>
+			<h:outputLabel value="Login: "></h:outputLabel>
+			<h:inputText value="#{usuarioBean.login}"></h:inputText>
+			<h:outputLabel value="Senha: "></h:outputLabel>
+			<h:inputSecret value="#{usuarioBean.senha}"></h:inputSecret>
+			<h:outputLabel value="Tipo de Usuário: "></h:outputLabel>
+			<h:selectOneRadio value="#{usuarioBean.tipoUsuario}">
+				<f:selectItem itemValue="funcionario" itemLabel="Funcionário" />
+			</h:selectOneRadio>
+		</h:panelGrid>
+		
+		<h:commandButton value="Continuar" action="#{usuarioBean.verLogin('CarregarPizzas')}"></h:commandButton>
 		
 	</h:form>
-	
-	<h:commandButton value="Fechar pedido" action="#{pedidoBean.setStatus}" />
-
 </f:view>
 </body>
 </html>
