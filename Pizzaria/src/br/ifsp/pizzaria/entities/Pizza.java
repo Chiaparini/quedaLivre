@@ -36,6 +36,8 @@ public class Pizza {
 	
 	@Column (name="descricao", nullable=false, length=100)
 	private String descricao;
+	
+	
 
 	public int getId(){
 		return id;

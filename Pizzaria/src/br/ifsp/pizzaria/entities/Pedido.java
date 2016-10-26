@@ -1,5 +1,6 @@
 package br.ifsp.pizzaria.entities;
  
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -38,10 +41,6 @@ public class Pedido {
 	@Column (name="status", nullable=false, length=40)
 	private String status;
 	
-	@OneToMany(fetch=FetchType.LAZY,
-			targetEntity=Pizza.class)
-	private List<Pizza> pizzas;
-	
 	@ManyToOne
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
@@ -51,6 +50,10 @@ public class Pedido {
 	
 	@Column (name="total", nullable=false)
 	private double total;
+	
+	@ManyToMany
+	@JoinTable(name="pedido_has_pizza", joinColumns = {@JoinColumn(name = "id_pedido")}, inverseJoinColumns = {@JoinColumn(name = "id_pizza")})
+	public List<Pizza> pizzas = new ArrayList<Pizza>();
 
 	public int getId() {
 		return id;

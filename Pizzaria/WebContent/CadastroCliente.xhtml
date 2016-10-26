@@ -27,33 +27,33 @@ xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelet
 		<h:outputLabel value="Cadastro de Cliente" /> <br/> <br/>
 		<h:panelGrid>
 			<h:outputLabel value="Login: "></h:outputLabel>
-			<h:inputText value="#{usuarioBean.login}" maxlength="20"></h:inputText>
+			<h:inputText value="#{loginCliente.login}" maxlength="20"></h:inputText>
 			<h:outputLabel value="Nome: "></h:outputLabel>
-			<h:inputText value="#{usuarioBean.nome}" maxlength="40"></h:inputText>
+			<h:inputText value="#{loginCliente.nome}" maxlength="40"></h:inputText>
 			<h:outputLabel value="Telefone: "></h:outputLabel>
-			<h:inputText value="#{usuarioBean.telefone}" maxlength="11"></h:inputText>
+			<h:inputText value="#{loginCliente.telefone}" maxlength="11"></h:inputText>
 			<h:outputLabel value="Senha: "></h:outputLabel>
-			<h:inputSecret value="#{usuarioBean.senha}" ></h:inputSecret>
+			<h:inputSecret value="#{loginCliente.senha}" ></h:inputSecret>
 			<h:outputLabel value="Confirmar Senha: "></h:outputLabel>
-			<h:inputSecret value="#{usuarioBean.confirmaSenha}" ></h:inputSecret>
+			<h:inputSecret value="#{loginCliente.confirmaSenha}" ></h:inputSecret>
 			<br/>
 			<br/>
 			<h:outputLabel value="Rua: "></h:outputLabel>
-			<h:inputText value="#{usuarioBean.rua}" maxlength="40"></h:inputText>
+			<h:inputText value="#{loginCliente.rua}" maxlength="40"></h:inputText>
 			<h:outputLabel value="Número: "></h:outputLabel>
-			<h:inputText value="#{usuarioBean.numero}" maxlength="6"/>
+			<h:inputText value="#{loginCliente.numero}" maxlength="6"/>
 			<h:outputLabel value="Bairro: "></h:outputLabel>
-			<h:inputText value="#{usuarioBean.bairro}" maxlength="20"></h:inputText>
+			<h:inputText value="#{loginCliente.bairro}" maxlength="20"></h:inputText>
 			<h:outputLabel value="CEP: "></h:outputLabel>
-			<h:inputText value="#{usuarioBean.cep}" maxlength="9"></h:inputText>
+			<h:inputText value="#{loginCliente.cep}" maxlength="9"></h:inputText>
 			<h:outputLabel value="Cidade: "></h:outputLabel>
-			<h:inputText value="#{usuarioBean.cidade}" maxlength="20"></h:inputText>
+			<h:inputText value="#{loginCliente.cidade}" maxlength="20"></h:inputText>
 			<h:outputLabel value="Complemento: "></h:outputLabel>
-			<h:inputText value="#{usuarioBean.complemento}" maxlength="20"></h:inputText>
+			<h:inputText value="#{loginCliente.complemento}" maxlength="20"></h:inputText>
 					
 		</h:panelGrid>
 		
-		<h:commandButton value="Salvar" action="#{usuarioBean.cadastrarUsuario('cliente')}" />
+		<h:commandButton value="Salvar" action="#{loginCliente.cadastrarUsuario('cliente')}" />
 			
 	</h:form>
 </f:view>
