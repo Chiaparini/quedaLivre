@@ -1,3 +1,4 @@
+.metadata/
 bin/
 tmp/
 *.tmp
@@ -47,3 +48,4 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+Pizzaria/WebContent/SucessoEdicaoPizza.xhtml

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 INDEX VERSION 1.3+G:\ADS\MOD VI\DSW\projetodsw\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 808195264.index
 3470047566.index
@@ -8,3 +9,13 @@ INDEX VERSION 1.3+G:\ADS\MOD VI\DSW\projetodsw\.metadata\.plugins\org.eclipse.ws
 4261792851.index
 1160239978.index
 4261792851.index
+=======
+INDEX VERSION 1.3+C:\Users\Chiaparini\Documents\GitHub\quedaLivre\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+475700143.index
+243630760.index
+4155138707.index
+2061051789.index
+1796762923.index
+399739501.index
+1306491134.index
+>>>>>>> 7476ee0cd6a887da908f5647dd1202a961eb39b6
