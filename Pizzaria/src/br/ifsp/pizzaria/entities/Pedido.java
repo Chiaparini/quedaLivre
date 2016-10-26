@@ -12,10 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-<<<<<<< HEAD
 import javax.persistence.ManyToMany;
-=======
->>>>>>> 7476ee0cd6a887da908f5647dd1202a961eb39b6
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -40,13 +37,6 @@ public class Pedido {
 	@Column (name="status", nullable=false, length=40)
 	private String status;
 	
-<<<<<<< HEAD
-=======
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinTable(name="pedido_has_pizza",joinColumns={@JoinColumn(name="pedido_id", referencedColumnName="id")}, inverseJoinColumns={@JoinColumn(name="pizza_id", referencedColumnName="id")})
-	private List<Pizza> pizzas;
-	
->>>>>>> 7476ee0cd6a887da908f5647dd1202a961eb39b6
 	@ManyToOne
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
