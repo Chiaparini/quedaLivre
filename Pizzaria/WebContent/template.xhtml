@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	version="2.0">
+    <jsp:directive.page language="java"
+        contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+    <jsp:text>
+        <![CDATA[ <?xml version="1.0" encoding="ISO-8859-1" ?> ]]>
+    </jsp:text>
+    <jsp:text>
+        <![CDATA[ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> ]]>
+    </jsp:text>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Template</title>
+</head>
+<body>
+<f:view>
+	<div id="mainHeader" style="height: 10%; width:80%; margin-left:10%;">
+		<h1 style="text-align: center;"> PIZZARIA QUEDA LIVRE </h1>
+		<ui:insert name="menu-superior"> Espaço para o menu específico do usuário </ui:insert>
+	</div>
+	
+	<div id="content" style="height:71%; margin-top: 4%; overflow: auto; width:80%; margin-left:10%;">
+		<ui:insert name="corpo-da-pagina">Espaço para o conteúdo da tela</ui:insert>
+	</div>
+	
+	<div id="footer" style="text-align: center; width:80%; margin-left:10%;">
+		<hr />
+		<h3 style="text-align: center;"> 2016 ADS </h3>
+		<p style="text-align: center;"> Diego de Araujo Silva / Henrique Richter / Lucas Chiaparini </p>
+		<p></p> 
+	</div>
+	
+</f:view>
+</body>
+</html>
+</jsp:root>

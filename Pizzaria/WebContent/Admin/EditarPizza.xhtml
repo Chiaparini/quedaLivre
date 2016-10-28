@@ -1,6 +1,10 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:f="http://java.sun.com/jsf/core"
- xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"  version="2.0">
+<ui:composition template="/template.xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:p="http://primefaces.org/ui" 
+	version="2.0">
     <jsp:directive.page language="java"
         contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
     <jsp:text>
@@ -9,25 +13,28 @@
     <jsp:text>
         <![CDATA[ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> ]]>
     </jsp:text>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Edição Pizza</title>
-</h:head>
-<body>
-<f:view>
-<div id="header">
-		<ui:insert name="header" >
-		  <ui:include src="Header.xhtml" />
+
+<ui:define name="menu-superior">
+
+<f:view>	
+
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="Header.xhtml" />
 		</ui:insert>
- </div>
+	</div>
+
+</f:view>
+</ui:define>
+
+<ui:define name="corpo-da-pagina">
 <h:form>
 
 	<h1> Edite os valores para salvar : </h1>
 	
 	<h:panelGrid>
 	
-	<h:outputLabel value ="Pizza de número : " for="id" />
+	<h:outputLabel value ="Pizza de numero : " for="id" />
 	<h:inputText id="id" name="id" readonly="#{facesContext.renderResponse}" value="#{pizzaBean.id}" />
 	
 	<h:outputLabel value ="Sabor : " for="sabor" />
@@ -36,7 +43,7 @@
 	</h:inputText>
 	<h:message style="color:red;margin:8px;" for="sabor" showDetail="false" showSummary="true"/>
 	
-	<h:outputLabel value="Preço : " for="preco" /> 
+	<h:outputLabel value="Valor : " for="preco" /> 
 	<h:inputText value="#{pizzaBean.preco}" id="preco" requiredMessage="Campo obrigatorio" converterMessage="Somente numeros" required="true"/>
 	<h:message style="color:red;margin:8px;" for="preco" showDetail="false" showSummary="true"/>
 	
@@ -52,7 +59,5 @@
 	<h:commandButton value="Cancelar" action="#{pizzaBean.goToIndex()}" /> 	
 	
 	</h:form>
-</f:view>
-</body>
-</html>
-</jsp:root>
+</ui:define>
+</ui:composition>

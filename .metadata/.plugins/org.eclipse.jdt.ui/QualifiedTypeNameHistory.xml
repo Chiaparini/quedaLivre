@@ -3,7 +3,6 @@
 <fullyQualifiedTypeName name="javax.persistence.EntityManagerFactory"/>
 <fullyQualifiedTypeName name="javax.persistence.Persistence"/>
 <fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
-<fullyQualifiedTypeName name="br.ifsp.pizzaria.entities.Pizza"/>
 <fullyQualifiedTypeName name="br.ifsp.pizzaria.entities.Usuario"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="br.ifsp.pizzaria.repository.PedidoRepository"/>
@@ -11,4 +10,10 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="br.ifsp.pizzaria.managedbean.PedidoBean"/>
 <fullyQualifiedTypeName name="br.ifsp.pizzaria.entities.Pedido"/>
+<fullyQualifiedTypeName name="javax.persistence.ManyToMany"/>
+<fullyQualifiedTypeName name="javax.persistence.JoinTable"/>
+<fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
+<fullyQualifiedTypeName name="br.ifsp.pizzaria.entities.Pizza"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="javax.faces.bean.ManagedBean"/>
 </qualifiedTypeNameHistroy>

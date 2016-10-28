@@ -1,6 +1,10 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:f="http://java.sun.com/jsf/core" 
-xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" version="2.0">
+<ui:composition template="/template.xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:p="http://primefaces.org/ui" 
+	version="2.0">
     <jsp:directive.page language="java"
         contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
     <jsp:text>
@@ -9,22 +13,23 @@ xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelet
     <jsp:text>
         <![CDATA[ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> ]]>
     </jsp:text>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Editar Funcionário</title>
-</h:head>
-<body>
-<f:view>
+
+<ui:define name="menu-superior">
+
+<f:view>	
 
 	<div id="header">
-		<ui:insert name="header" >
-		  <ui:include src="Header.xhtml" />
+		<ui:insert name="header">
+			<ui:include src="Header.xhtml" />
 		</ui:insert>
- 	</div>
+	</div>
 
+</f:view>
+</ui:define>
+
+<ui:define name="corpo-da-pagina">
 	<h:form>
-		<h:outputLabel value="Alteração de dados de Funcionário" /> <br/> <br/>
+		<h:outputLabel value="Alterar dados de Colaborador" /> <br/> <br/>
 		<h:panelGrid>
 			<h:inputHidden value="#{loginFuncionario.id }"></h:inputHidden>
 			<h:outputLabel value="Login*: "></h:outputLabel>
@@ -43,7 +48,5 @@ xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelet
 		<h:commandButton value="Salvar" action="#{loginFuncionario.alterarUsuario}" />
 			
 	</h:form>
-</f:view>
-</body>
-</html>
-</jsp:root>
+</ui:define>
+</ui:composition>
