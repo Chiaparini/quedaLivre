@@ -134,59 +134,6 @@ public class UsuarioBean {
 		}
 	}
 	
-	public String verLogin(String pagina){
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pizzaria");
-		EntityManager em = factory.createEntityManager();
-		
-		UsuarioRepository repo = new UsuarioRepository(em);
-		Usuario usuario = new Usuario();
-		Usuario result = new Usuario();
-		
-		usuario.setLogin(login);
-		usuario.setSenha(senha);
-		usuario.setTipoUsuario(tipoUsuario);
-		
-		
-		em.getTransaction().begin();
-		
-		usuario = repo.verificarLogin(usuario);
-		
-		em.getTransaction().commit();
-		
-		em.close();
-		factory.close();
-		
-		if(usuario == null){
-			return "SenhaInvalida";
-		}
-		else{
-			
-			id = usuario.getId();
-			nome = usuario.getNome();
-			telefone = usuario.getTelefone();
-			login = usuario.getLogin();
-			senha = "";
-			rua = usuario.getRua();
-			numero = usuario.getNumero();
-			bairro = usuario.getBairro();
-			cep = usuario.getCep();
-			cidade = usuario.getCidade();
-			complemento = usuario.getComplemento();
-			
-			return pagina;
-			
-			
-			
-			/*if(tipoUsuario.equals("funcionario")){
-				return "EditarFuncionario";
-			}
-			else{
-				return "EditarCliente";
-			}*/
-			
-			
-		}
-	}
 	
 	public String verHistorico(){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pizzaria");
@@ -203,34 +150,27 @@ public class UsuarioBean {
 		
 		em.getTransaction().begin();
 		
-		usuario = repo.verificarLogin(usuario);
-		
 		em.getTransaction().commit();
 		
 		em.close();
 		factory.close();
+
+		id = usuario.getId();
+		nome = usuario.getNome();
+		telefone = usuario.getTelefone();
+		login = usuario.getLogin();
+		senha = "";
+		rua = usuario.getRua();
+		numero = usuario.getNumero();
+		bairro = usuario.getBairro();
+		cep = usuario.getCep();
+		cidade = usuario.getCidade();
+		complemento = usuario.getComplemento();
 		
-		if(usuario == null){
-			return "SenhaInvalida";
-		}
-		else{
-			
-			id = usuario.getId();
-			nome = usuario.getNome();
-			telefone = usuario.getTelefone();
-			login = usuario.getLogin();
-			senha = "";
-			rua = usuario.getRua();
-			numero = usuario.getNumero();
-			bairro = usuario.getBairro();
-			cep = usuario.getCep();
-			cidade = usuario.getCidade();
-			complemento = usuario.getComplemento();
-		
-			PedidoBean pedidob = new PedidoBean();
-			this.pedidos = pedidob.historicoUsuario(id);
-			return "HistoricoPedido";
-		}
+		PedidoBean pedidob = new PedidoBean();
+		this.pedidos = pedidob.historicoUsuario(id);
+		return "HistoricoPedido";
+
 	}
 	
 	public String fazerPedido(){
@@ -248,34 +188,27 @@ public class UsuarioBean {
 		
 		em.getTransaction().begin();
 		
-		usuario = repo.verificarLogin(usuario);
-		
 		em.getTransaction().commit();
 		
 		em.close();
 		factory.close();
 		
-		if(usuario == null){
-			return "SenhaInvalida";
-		}
-		else{
-			
-			id = usuario.getId();
-			nome = usuario.getNome();
-			telefone = usuario.getTelefone();
-			login = usuario.getLogin();
-			senha = "";
-			rua = usuario.getRua();
-			numero = usuario.getNumero();
-			bairro = usuario.getBairro();
-			cep = usuario.getCep();
-			cidade = usuario.getCidade();
-			complemento = usuario.getComplemento();
 		
-			PedidoBean pedidob = new PedidoBean();
-			this.pedidos = pedidob.historicoUsuario(id);
-			return "CadastroPedido";
-		}
+		id = usuario.getId();
+		nome = usuario.getNome();
+		telefone = usuario.getTelefone();
+		login = usuario.getLogin();
+		senha = "";
+		rua = usuario.getRua();
+		numero = usuario.getNumero();
+		bairro = usuario.getBairro();
+		cep = usuario.getCep();
+		cidade = usuario.getCidade();
+		complemento = usuario.getComplemento();
+		
+		PedidoBean pedidob = new PedidoBean();
+		this.pedidos = pedidob.historicoUsuario(id);
+		return "CadastroPedido";
 	}
 	
 	
@@ -380,9 +313,9 @@ public class UsuarioBean {
 		return complemento;
 	}
 
+	
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	
 	
 }

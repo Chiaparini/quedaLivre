@@ -29,21 +29,15 @@
 
 <ui:define name="corpo-da-pagina">
 	<h:form>
-		<h:outputLabel value="Faça o login para continuar"/> <br/> <br/>
+		<h:outputLabel value="Realize o login para continuar"/> <br/> <br/>
 		<h:panelGrid>
 			<h:outputLabel value="Login: "></h:outputLabel>
-			<h:inputText value="#{loginFuncionario.login}"></h:inputText>
+			<h:inputText value="#{autenticarFuncionario.login}"></h:inputText>
 			<h:outputLabel value="Senha: "></h:outputLabel>
-			<h:inputSecret value="#{loginFuncionario.senha}"></h:inputSecret>
-			<!-- <h:outputLabel value="Tipo de Usuário: "></h:outputLabel>
-			<h:selectOneRadio value="#{usuarioBean.tipoUsuario}">
-				<f:selectItem itemValue="funcionario" itemLabel="Funcionário" />
-				<f:selectItem itemValue="cliente" itemLabel="Cliente" />
-			</h:selectOneRadio>
-			 -->
+			<h:inputSecret value="#{autenticarFuncionario.senha}"></h:inputSecret>
 		</h:panelGrid>
 		
-		<h:commandButton value="Continuar" action="#{loginFuncionario.verLogin('index')}"></h:commandButton>
+		<h:commandButton value="Continuar" action="#{autenticarFuncionario.autenticar}"></h:commandButton>
 		
 	</h:form>
 </ui:define>

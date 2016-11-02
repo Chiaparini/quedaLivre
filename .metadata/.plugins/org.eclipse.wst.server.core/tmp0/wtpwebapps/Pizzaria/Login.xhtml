@@ -30,12 +30,12 @@
 		<h:outputLabel value="Realize o login para continuar"/> <br/> <br/>
 		<h:panelGrid>
 			<h:outputLabel value="Login: "></h:outputLabel>
-			<h:inputText value="#{loginCliente.login}"></h:inputText>
+			<h:inputText value="#{autenticarCliente.login}"></h:inputText>
 			<h:outputLabel value="Senha: "></h:outputLabel>
-			<h:inputSecret value="#{loginCliente.senha}"></h:inputSecret>
+			<h:inputSecret value="#{autenticarCliente.senha}"></h:inputSecret>
 		</h:panelGrid>
 		
-		<h:commandButton value="Continuar" action="#{loginCliente.verLogin('index')}"></h:commandButton>
+		<h:commandButton value="Continuar" action="#{autenticarCliente.autenticar}"></h:commandButton>
 		
 	</h:form>
 </ui:define>

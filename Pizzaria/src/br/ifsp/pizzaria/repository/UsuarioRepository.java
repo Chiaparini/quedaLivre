@@ -23,13 +23,12 @@ public class UsuarioRepository {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Usuario verificarLogin(Usuario usuario){
+	public Usuario verificarLogin(String login, String senha){
 		try{
 			Query query = this.manager.
-						createQuery("SELECT u FROM Usuario u WHERE login = :login AND senha = :senha AND tipoUsuario = :tipoUsuario");
-			query.setParameter("login", usuario.getLogin());
-			query.setParameter("senha", usuario.getSenha());
-			query.setParameter("tipoUsuario", usuario.getTipoUsuario());
+						createQuery("SELECT u FROM Usuario u WHERE login = :login AND senha = :senha");
+			query.setParameter("login", login);
+			query.setParameter("senha", senha);
 			return (Usuario) query.getSingleResult();
 		}
 		catch(NoResultException e){
