@@ -31,21 +31,21 @@
 	<h:form>
 		<h:outputLabel value="Alterar dados de Colaborador" /> <br/> <br/>
 		<h:panelGrid>
-			<h:inputHidden value="#{loginFuncionario.id }"></h:inputHidden>
+			<h:inputHidden value="#{editarFuncionarioBean.id }"></h:inputHidden>
 			<h:outputLabel value="Login*: "></h:outputLabel>
-			<h:inputText value="#{loginFuncionario.login}" maxlength="20"></h:inputText>
+			<h:inputText value="#{editarFuncionarioBean.login}" maxlength="20"></h:inputText>
 			<h:outputLabel value="Nome*: "></h:outputLabel>
-			<h:inputText value="#{loginFuncionario.nome}" maxlength="40"></h:inputText>
+			<h:inputText value="#{editarFuncionarioBean.nome}" maxlength="40"></h:inputText>
 			<h:outputLabel value="Telefone*: "></h:outputLabel>
-			<h:inputText value="#{loginFuncionario.telefone}" maxlength="11"></h:inputText>
+			<h:inputText value="#{editarFuncionarioBean.telefone}" maxlength="11"></h:inputText>
 			<h:outputLabel value="Senha*: "></h:outputLabel>
-			<h:inputSecret value="#{loginFuncionario.senha}" ></h:inputSecret>
+			<h:inputSecret value="#{editarFuncionarioBean.senha}" ></h:inputSecret>
 			<h:outputLabel value="Confirmar Senha*: "></h:outputLabel>
-			<h:inputSecret value="#{loginFuncionario.confirmaSenha}" ></h:inputSecret>
+			<h:inputSecret value="#{editarFuncionarioBean.confirmaSenha}" ></h:inputSecret>
 					
 		</h:panelGrid>
 		
-		<h:commandButton value="Salvar" action="#{loginFuncionario.alterarUsuario}" />
+		<h:commandButton value="Salvar" action="#{editarFuncionarioBean.alterarUsuario}" />
 			
 	</h:form>
 </ui:define>

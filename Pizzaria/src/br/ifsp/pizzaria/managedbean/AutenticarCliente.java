@@ -2,6 +2,7 @@ package br.ifsp.pizzaria.managedbean;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -13,12 +14,17 @@ import br.ifsp.pizzaria.entities.Usuario;
 import br.ifsp.pizzaria.repository.UsuarioRepository;
 
 @ManagedBean
+@SessionScoped
 public class AutenticarCliente {
 	private String login;
 	private String senha;
 	
+	
+
 	public String autenticar(){
 	
+		
+		
 		EntityManagerFactory factory = 
 				Persistence.createEntityManagerFactory("pizzaria");
 		EntityManager manager = factory.createEntityManager();
@@ -52,12 +58,14 @@ public class AutenticarCliente {
 		
 	}
 	
+
 	public String registrarSaida(){
 		
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
 		HttpSession session = (HttpSession) ec.getSession(false);
 		session.removeAttribute("usuario");
+		
 		
 		return "Login";
 	}

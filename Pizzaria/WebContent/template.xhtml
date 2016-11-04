@@ -3,6 +3,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets" 
 	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:p="http://primefaces.org/ui"
 	version="2.0">
     <jsp:directive.page language="java"
         contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
@@ -15,11 +16,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Template</title>
+<title>Pizzaria Queda Livre</title>
 </h:head>
-<body>
-<f:view>
-	<div id="mainHeader" style="height: 10%; width:80%; margin-left:10%;">
+<h:body>
+<!-- <f:view>  -->
+	<div id="mainHeader" style="min-height: 10%; width:80%; margin-left:10%;">
 		<h1 style="text-align: center;"> PIZZARIA QUEDA LIVRE </h1>
 		<ui:insert name="menu-superior"> Espaço para o menu específico do usuário </ui:insert>
 	</div>
@@ -35,7 +36,7 @@
 		<p></p> 
 	</div>
 	
-</f:view>
-</body>
+<!-- </f:view> -->
+</h:body>
 </html>
 </jsp:root>

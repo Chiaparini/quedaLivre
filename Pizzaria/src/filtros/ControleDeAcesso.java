@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.ifsp.pizzaria.entities.Usuario;
+
 @WebFilter (servletNames={"Faces Servlet"})
 public class ControleDeAcesso implements Filter{
 	@Override
@@ -21,6 +23,8 @@ public class ControleDeAcesso implements Filter{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	Usuario usu;
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
@@ -33,6 +37,7 @@ public class ControleDeAcesso implements Filter{
 				req.getRequestURI().endsWith("index.xhtml") ||
 				req.getRequestURI().endsWith("CadastroCliente.xhtml") ||
 				req.getRequestURI().endsWith("CadastroFuncionario.xhtml") ||
+				//req.getRequestURI().endsWith(".css") ||
 				req.getRequestURI().endsWith("Header.xhtml") ||
 				req.getRequestURI().endsWith("template.xhtml") ||
 				
@@ -54,5 +59,16 @@ public class ControleDeAcesso implements Filter{
 	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void setUsu(ServletRequest request, ServletResponse response,
+		FilterChain chain) throws IOException, ServletException{
+		HttpServletRequest req= (HttpServletRequest) request;
+		HttpSession session = req.getSession();
+		this.usu = (Usuario) session.getAttribute("usuario");
+	}
+	
+	public Usuario getUsu(){
+		return this.usu;
 	}
 }
