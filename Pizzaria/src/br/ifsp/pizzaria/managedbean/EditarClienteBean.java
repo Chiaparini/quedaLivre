@@ -9,8 +9,8 @@ import javax.persistence.Persistence;
 import javax.servlet.http.HttpSession;
 
 import br.ifsp.pizzaria.entities.Usuario;
+import br.ifsp.pizzaria.filtros.SessionUtils;
 import br.ifsp.pizzaria.repository.UsuarioRepository;
-import filtros.SessionUtils;
 
 @ManagedBean
 public class EditarClienteBean {

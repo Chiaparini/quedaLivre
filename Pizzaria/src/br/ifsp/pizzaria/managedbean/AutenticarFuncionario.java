@@ -2,6 +2,7 @@ package br.ifsp.pizzaria.managedbean;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import br.ifsp.pizzaria.entities.Usuario;
 import br.ifsp.pizzaria.repository.UsuarioRepository;
 
 @ManagedBean
+@SessionScoped
 public class AutenticarFuncionario {
 	private String login;
 	private String senha;

@@ -1,6 +1,8 @@
 
 package br.ifsp.pizzaria.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -30,6 +32,21 @@ public class UsuarioRepository {
 			query.setParameter("login", login);
 			query.setParameter("senha", senha);
 			return (Usuario) query.getSingleResult();
+		}
+		catch(NoResultException e){
+			return null;
+		}
+		
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Usuario> verificarValorLogin(String login){
+		try{
+			Query query = this.manager.
+						createQuery("SELECT u FROM Usuario u WHERE login = :login");
+			query.setParameter("login", login);
+			return query.getResultList();
 		}
 		catch(NoResultException e){
 			return null;

@@ -2,16 +2,25 @@ package br.ifsp.pizzaria.managedbean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.FacesValidator;
+import javax.faces.validator.Validator;
+import javax.faces.validator.ValidatorException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 import br.ifsp.pizzaria.entities.Pedido;
 import br.ifsp.pizzaria.entities.Usuario;
 import br.ifsp.pizzaria.repository.UsuarioRepository;
 
 @ManagedBean
+@FacesValidator("ValidadorSenha2")
 public class LoginCliente {
 	
 	private int id;
@@ -37,6 +46,7 @@ public class LoginCliente {
 		this.pedidos = pedidos;
 	}
 
+	
 	public String cadastrarUsuario(String tipo){
 		
 		
@@ -78,9 +88,12 @@ public class LoginCliente {
 		
 		}
 		else{
+			
+			
 			return "SenhaInvalida";
 		}
 	}
+	
 	
 	public String alterarUsuario(){
 		
