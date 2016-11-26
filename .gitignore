@@ -10,6 +10,9 @@ local.properties
 .loadpath
 .recommenders
 
+# Garantir que o metadata nao venha de maneira alguma, espero...
+.metadata
+
 # Eclipse Core
 .project
 
