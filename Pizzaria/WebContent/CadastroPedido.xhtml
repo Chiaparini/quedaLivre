@@ -29,18 +29,22 @@
 	<h:form>
 		<h:panelGrid>
 		<h:outputLabel value="Escolha sua pizza: " style="font-weight:bold" />
-		<h:selectOneListbox var="pizza" value="#{pedidoBean.idPizza}">
+		<h:selectOneListbox var="pizza" value="#{realizarPedidoBean.idPizza}">
 			<f:selectItems
-				value="#{pedidoBean.buscaTodasPizzas()}"  var="pizza" itemLabel="#{pizza.sabor}" itemValue="#{pizza.id}"/>
+				value="#{realizarPedidoBean.buscaTodasPizzas()}"  var="pizza" itemLabel="#{pizza.sabor}" itemValue="#{pizza.id}"/>
 		</h:selectOneListbox>
 		
 		    <h:outputLabel value="Quantidade: " style="font-weight:bold" />
-	        <h:inputText id="quantidade" value="#{pedidoBean.quantidade}" />
+	        <h:inputText id="quantidade" value="#{realizarPedidoBean.quantidade}" />
 	        
+	      <h:outputLabel value="Total: " style="font-weight:bold" />
+	      <h:inputText id="total" name="total" readonly="#{facesContext.renderResponse}" value="#{realizarPedidoBean.total}" />
 	        
 		</h:panelGrid>
 		
-		<h:commandButton value="Realizar pedido" action="#{pedidoBean.novoPedido}" />
+		<h:commandButton value="Adicionar" action="#{realizarPedidoBean.adicionaPizza}" />
+	
+		<h:commandButton value="Realizar pedido" action="#{realizarPedidoBean.realizarPedido}" />
 	</h:form>
 </ui:define>
 </ui:composition>

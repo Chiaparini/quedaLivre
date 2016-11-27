@@ -17,6 +17,7 @@ public class PedidoRepository {
 	private EntityManager manager;
 	
 	public void adiciona(Pedido pedido){
+		System.out.println("Pizza para persistir: " + pedido.getPizzas().get(0).getSabor());
 		this.manager.persist(pedido);
 	}
 	

@@ -21,10 +21,13 @@ import javax.persistence.Table;
 @Table (name="Pedido")
 public class Pedido {
 	
-	public Pedido(List<Pizza> pizzas, Usuario usuario, Date data, double total, String status){
+	public Pedido(){
+		
+	}
+	
+	public Pedido(List<Pizza> pizzas, Usuario usuario, double total, String status){
 		this.pizzas = pizzas;
 		this.usuario = usuario;
-		this.data = data;
 		this.total = total;
 		this.status = status;
 	}
@@ -41,15 +44,12 @@ public class Pedido {
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
 	
-	@Column (name="data", nullable=false)
-	private Date data;
-	
 	@Column (name="total", nullable=false)
 	private double total;
 	
 	@ManyToMany
 	@JoinTable(name="pedido_has_pizza", joinColumns = {@JoinColumn(name = "id_pedido")}, inverseJoinColumns = {@JoinColumn(name = "id_pizza")})
-	public List<Pizza> pizzas = new ArrayList<Pizza>();
+	private List<Pizza> pizzas  = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -83,13 +83,6 @@ public class Pedido {
 		this.usuario = usuario;
 	}
 
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
 
 	public double getTotal() {
 		return total;
