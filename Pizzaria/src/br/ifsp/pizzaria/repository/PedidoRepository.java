@@ -7,6 +7,8 @@ import javax.persistence.Query;
 
 import br.ifsp.pizzaria.entities.Pedido;
 import br.ifsp.pizzaria.entities.Pizza;
+import br.ifsp.pizzaria.entities.Usuario;
+import br.ifsp.pizzaria.filtros.SessionUtils;
 
 public class PedidoRepository {
 
@@ -42,6 +44,15 @@ public class PedidoRepository {
 	@SuppressWarnings("unchecked")
 	public List<Pedido> buscaTodosAberto() {
 		Query query = this.manager.createQuery(" FROM Pedido WHERE status = 'aberto'");
+		return query.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Pedido> buscaTodosDoUsuario() {
+		Usuario usu = SessionUtils.getUser();
+		 
+		Query query = this.manager.createQuery(" FROM Pedido WHERE usuario_id = :id");
+		query.setParameter("id", usu.getId());
 		return query.getResultList();
 	}
 	
