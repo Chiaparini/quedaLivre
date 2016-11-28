@@ -2,6 +2,7 @@ package br.ifsp.pizzaria.managedbean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -36,6 +37,7 @@ public class BaixaPedidoBean implements Serializable {
 	private Pizza pizza;
 	private int quantidade;
 	private int idPizza;
+	private Date data;
 	
 	public boolean isReadonly() { 
 	    return FacesContext.getCurrentInstance().getRenderResponse();
@@ -82,6 +84,9 @@ public class BaixaPedidoBean implements Serializable {
 
 			Pedido pedido = pedidoRepository.busca(id);
 			
+			data = new Date();
+			
+			pedido.setData(data);
 			pedido.setStatus("fechado");
 			
 			manager.getTransaction().begin();
@@ -185,5 +190,13 @@ public class BaixaPedidoBean implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 }

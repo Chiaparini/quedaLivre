@@ -53,7 +53,7 @@ public class PedidoBean implements Serializable {
 			this.data = d;
 			this.status = "Aberto";
 			
-			Pedido pedido = new Pedido(this.pizzas, this.usuario, this.total, this.status);
+			Pedido pedido = new Pedido(this.pizzas, this.usuario, this.total, this.data, this.status);
 
 			pedido.setPizzas(pizzas);
 			pedido.setStatus(this.status);

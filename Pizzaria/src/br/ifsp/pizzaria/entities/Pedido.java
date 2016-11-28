@@ -25,10 +25,11 @@ public class Pedido {
 		
 	}
 	
-	public Pedido(List<Pizza> pizzas, Usuario usuario, double total, String status){
+	public Pedido(List<Pizza> pizzas, Usuario usuario, double total,Date data, String status){
 		this.pizzas = pizzas;
 		this.usuario = usuario;
 		this.total = total;
+		this.data = data;
 		this.status = status;
 	}
 	
@@ -43,6 +44,9 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
+	
+	@Column (name="data", nullable=false)		
+	private Date data;
 	
 	@Column (name="total", nullable=false)
 	private double total;
@@ -90,6 +94,14 @@ public class Pedido {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 	
 }

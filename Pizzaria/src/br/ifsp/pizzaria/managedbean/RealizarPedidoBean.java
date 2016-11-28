@@ -2,6 +2,7 @@ package br.ifsp.pizzaria.managedbean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -32,6 +33,7 @@ public class RealizarPedidoBean implements Serializable {
 	private String status;
 	private Usuario usuario;
 	private double total;
+	private Date data;
 	private Pizza pizza;
 	private int quantidade;
 	private int idPizza;
@@ -80,7 +82,8 @@ public class RealizarPedidoBean implements Serializable {
 			usuario =  usuRepo.busca(usuarioId);
 			status= "aberto";
 			System.out.println("Pizza para passar ao objeto: " + pizzas.get(0).getSabor());
-			Pedido pedido = new Pedido(pizzas, usuario, total, status);
+			data = new Date();
+			Pedido pedido = new Pedido(pizzas, usuario, total, data, status);
 
 			System.out.println("Pizza para passar ao persistir: " + pedido.getPizzas().get(0).getSabor());
 
@@ -194,5 +197,13 @@ public class RealizarPedidoBean implements Serializable {
 
 	public void setIdPizza(int idPizza) {
 		this.idPizza = idPizza;
+	}
+
+	private Date getData() {
+		return data;
+	}
+
+	private void setData(Date data) {
+		this.data = data;
 	}
 }
