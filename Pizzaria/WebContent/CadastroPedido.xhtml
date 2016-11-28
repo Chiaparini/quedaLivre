@@ -29,13 +29,15 @@
 	<h:form>
 		<h:panelGrid>
 		<h:outputLabel value="Escolha sua pizza: " style="font-weight:bold" />
-		<h:selectOneListbox var="pizza" value="#{realizarPedidoBean.idPizza}">
+		<h:selectOneListbox id="pizza_id" var="pizza" value="#{realizarPedidoBean.idPizza}" requiredMessage="Campo obrigatorio" required="true">
 			<f:selectItems
 				value="#{realizarPedidoBean.buscaTodasPizzas()}"  var="pizza" itemLabel="#{pizza.sabor}" itemValue="#{pizza.id}"/>
 		</h:selectOneListbox>
+		<h:message style="color:red;margin:8px;" for="pizza_id" showDetail="false" showSummary="true"/>
 		
 		    <h:outputLabel value="Quantidade: " style="font-weight:bold" />
-	        <h:inputText id="quantidade" value="#{realizarPedidoBean.quantidade}" />
+	        <h:inputText id="quantidade" value="#{realizarPedidoBean.quantidade}" requiredMessage="Campo obrigatorio" required="true"/>
+	        <h:message style="color:red;margin:8px;" for="quantidade" showDetail="false" showSummary="true"/>
 	        
 	      <h:outputLabel value="Total: " style="font-weight:bold" />
 	      <h:inputText id="total" name="total" readonly="#{facesContext.renderResponse}" value="#{realizarPedidoBean.total}" />

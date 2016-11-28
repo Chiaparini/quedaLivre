@@ -29,28 +29,13 @@
 
 <ui:define name="corpo-da-pagina">
  	<h:form>
-		<h:dataTable value="#{usuarioBean.pedidos}" var="pedido" columnClasses="col, col, col, col">
-			<f:facet name="header"> <h:outputLabel value="Alterar pedidos:"></h:outputLabel> </f:facet>
-				<h:column style="width:1000px;">
-					<f:facet name="header">Data: </f:facet>
-					#{pedido.data}
-				</h:column>
-				<h:column style="width:1000px;">
-					<f:facet name="header">Usuario: </f:facet>
-					#{pedido.usuario.getNome()}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Total: </f:facet>
-					#{pedido.total}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Status: </f:facet>
-					#{pedido.status}
-				</h:column>
-				
-		</h:dataTable>
+		<h:selectOneListbox id="id_pedido" var="id" requiredMessage="Campo obrigatorio" value="#{baixaPedidoBean.id}" required="true">
+		<f:selectItems
+			value="#{baixaPedidoBean.selecionarPedidos()}" />
+	</h:selectOneListbox>
+		<h:message style="color:red;margin:8px;" for="id_pedido" showDetail="false" showSummary="true"/>
 	
-		<h:commandButton value="Fechar pedido" action="#{pedidoBean.setStatus}" />	
+		<h:commandButton value="Fechar pedido" action="#{baixaPedidoBean.fechaPedido()}" />	
 	</h:form>
 	
 	

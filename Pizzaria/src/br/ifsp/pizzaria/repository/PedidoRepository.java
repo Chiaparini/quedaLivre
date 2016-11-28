@@ -39,6 +39,12 @@ public class PedidoRepository {
 		return query.getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Pedido> buscaTodosAberto() {
+		Query query = this.manager.createQuery(" FROM Pedido WHERE status = 'aberto'");
+		return query.getResultList();
+	}
+	
 	
 	
 }

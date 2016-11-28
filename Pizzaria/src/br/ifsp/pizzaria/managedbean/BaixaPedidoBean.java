@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,13 +21,13 @@ import br.ifsp.pizzaria.repository.PizzaRepository;
 import br.ifsp.pizzaria.repository.UsuarioRepository;
 
 @ManagedBean
-@ViewScoped
-public class RealizarPedidoBean implements Serializable {
+public class BaixaPedidoBean implements Serializable {
 	
-	public RealizarPedidoBean(){
+	public BaixaPedidoBean(){
 		
 	}
 	
+	private int id;
 	private int usuarioId;
 	private List<Pizza> pizzas = new ArrayList<>();
 	private String status;
@@ -40,78 +41,25 @@ public class RealizarPedidoBean implements Serializable {
 	    return FacesContext.getCurrentInstance().getRenderResponse();
 	}
 	
-	public void adicionaPizza(){
-		try{
-			EntityManagerFactory factory =
-					Persistence.createEntityManagerFactory("pizzaria");
-					
-			EntityManager manager = factory.createEntityManager();
-			
-			PizzaRepository pizzaRepository = new PizzaRepository(manager);
-			System.out.println("Test");
-			System.out.println("Pizza id" + idPizza);
-			pizza = pizzaRepository.busca(idPizza);
-			System.out.println("Test2");
-			pizzas.add(pizza);
-			System.out.println("Test3");
-			total += pizza.getPreco() * quantidade;
-			System.out.println("Test4");
-			System.out.println("Total = " + total);
-			System.out.println("Pizzas "+ pizzas.get(0).getDescricao());
-			//return "";
-		}catch(Exception e){
-			//return "fasgasgas";
-		}
+	public List<SelectItem> selecionarPedidos(){
+
+		   List<SelectItem> items = new ArrayList<SelectItem>();
+		   List<Pedido> pedidoList = buscaTodos();
+		    for(Pedido pedido: pedidoList){
+		       items.add(new SelectItem(pedido.getId(),"Total:" + pedido.getTotal()));
+		   }
+
+		   return items;
 	}
-	
-	public String realizarPedido(){
-		try{
-			usuario = SessionUtils.getUser();
-			usuarioId = usuario.getId();
-		
-			EntityManagerFactory factory = 
-					Persistence.createEntityManagerFactory("pizzaria");
-			
-			EntityManager manager = factory.createEntityManager();
-
-			PedidoRepository pedidoRepository = new PedidoRepository(manager);
-			
-			UsuarioRepository usuRepo = new UsuarioRepository(manager);
-			usuario =  usuRepo.busca(usuarioId);
-			status= "aberto";
-			System.out.println("Pizza para passar ao objeto: " + pizzas.get(0).getSabor());
-			Pedido pedido = new Pedido(pizzas, usuario, total, status);
-
-			System.out.println("Pizza para passar ao persistir: " + pedido.getPizzas().get(0).getSabor());
-
-			manager.getTransaction().begin();
-			
-			pedidoRepository.adiciona(pedido);
-			
-			manager.getTransaction().commit();
-			
-			manager.close();
-			
-			factory.close();
-			
-			return "SucessoPedido";	
-		}catch(Exception e) {
-            e.printStackTrace();
-			return "Ops";
-			
-		}	
-		
-	}
-
 	
 	public List<Pedido> buscaTodos() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("Pizzaria");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("pizzaria");
 		EntityManager manager = factory.createEntityManager();
 		PedidoRepository repoPedido = new PedidoRepository(manager);
 		
 		manager.getTransaction().begin();
 		
-		List<Pedido> pedidos = repoPedido.buscaTodos();
+		List<Pedido> pedidos = repoPedido.buscaTodosAberto();
 		
 		manager.close();
 		
@@ -119,6 +67,41 @@ public class RealizarPedidoBean implements Serializable {
 		
 		return pedidos;
 	}
+	
+	public String fechaPedido(){
+		
+		try{
+			EntityManagerFactory factory =
+					Persistence.createEntityManagerFactory("pizzaria");
+					
+			EntityManager manager = factory.createEntityManager();
+					
+			PedidoRepository pedidoRepository = new PedidoRepository(manager);
+
+			System.out.println("Id do objeto pedio : " + id);
+
+			Pedido pedido = pedidoRepository.busca(id);
+			
+			pedido.setStatus("fechado");
+			
+			manager.getTransaction().begin();
+			
+			manager.merge(pedido);
+			
+			manager.getTransaction().commit();
+			
+			manager.close();
+			
+			factory.close();
+			
+			return "";
+		}catch(Exception e){
+			
+			return "Ops";
+		}
+				
+	}
+	
 	
 	public List<Pizza> buscaTodasPizzas() {
 		PizzaBean pb = new PizzaBean();
@@ -194,5 +177,13 @@ public class RealizarPedidoBean implements Serializable {
 
 	public void setIdPizza(int idPizza) {
 		this.idPizza = idPizza;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
