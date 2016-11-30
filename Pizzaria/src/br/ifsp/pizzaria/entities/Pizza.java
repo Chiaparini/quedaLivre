@@ -1,9 +1,13 @@
 package br.ifsp.pizzaria.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -37,8 +41,11 @@ public class Pizza {
 	@Column (name="descricao", nullable=false, length=100)
 	private String descricao;
 	
+    @ManyToMany(mappedBy = "pizzas")
+	private Set<Pedido> pedido = new HashSet<>();
 	
-
+	 
+    
 	public int getId(){
 		return id;
 	}
@@ -65,6 +72,14 @@ public class Pizza {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Set<Pedido> getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Set<Pedido> pedido) {
+		this.pedido = pedido;
 	}
 
 }

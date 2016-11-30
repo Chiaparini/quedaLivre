@@ -17,6 +17,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table (name="Pedido")
 public class Pedido {
@@ -41,7 +44,7 @@ public class Pedido {
 	@Column (name="status", nullable=false, length=40)
 	private String status;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
 	
@@ -51,8 +54,9 @@ public class Pedido {
 	@Column (name="total", nullable=false)
 	private double total;
 	
-	@ManyToMany
-	@JoinTable(name="pedido_has_pizza", joinColumns = {@JoinColumn(name = "id_pedido")}, inverseJoinColumns = {@JoinColumn(name = "id_pizza")})
+	//@ManyToMany
+	//@JoinTable(name="pedido_has_pizza", joinColumns = {@JoinColumn(name = "id_pedido")}, inverseJoinColumns = {@JoinColumn(name = "id_pizza")})
+    @ManyToMany(cascade = {CascadeType.MERGE})
 	private List<Pizza> pizzas  = new ArrayList<>();
 
 	public int getId() {

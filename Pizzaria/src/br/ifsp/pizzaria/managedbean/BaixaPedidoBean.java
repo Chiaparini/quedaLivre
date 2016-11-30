@@ -44,11 +44,19 @@ public class BaixaPedidoBean implements Serializable {
 	}
 	
 	public List<SelectItem> selecionarPedidos(){
-
+		   EntityManagerFactory factory = Persistence.createEntityManagerFactory("pizzaria");
+		   EntityManager manager = factory.createEntityManager();
 		   List<SelectItem> items = new ArrayList<SelectItem>();
 		   List<Pedido> pedidoList = buscaTodos();
+		   UsuarioRepository usuRepo = new UsuarioRepository(manager);
+		  
+		   
 		    for(Pedido pedido: pedidoList){
-		       items.add(new SelectItem(pedido.getId(),"Total:" + pedido.getTotal()));
+		    	String name = pedido.getUsuario().getNome();
+		    	
+		       items.add(new SelectItem(pedido.getId(),
+		    		   "Usuario: "+ name+
+		    		   ", Total:" + pedido.getTotal()+ "  | Data: "+ pedido.getData()));
 		   }
 
 		   return items;

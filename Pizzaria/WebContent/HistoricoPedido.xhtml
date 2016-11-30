@@ -27,8 +27,8 @@
 </ui:define>
 <ui:define name="corpo-da-pagina">
 	<h:form>
-		<h:dataTable value="#{usuarioBean.pedidos}" var="pedido" columnClasses="col, col, col">
-			<f:facet name="header"> <h:outputLabel value="Historico de Pedidos do Cliente #{usuarioBean.nome}"></h:outputLabel> </f:facet>
+		<h:dataTable value="#{pedidoBean.pedidos()}" var="pedido" columnClasses="col, col, col">
+			<f:facet name="header"> <h:outputLabel value="Historico de Pedidos do Cliente #{pedidoBean.nome}"></h:outputLabel> </f:facet>
 				<h:column style="width:1000px;">
 					<f:facet name="header">Data: </f:facet>
 					#{pedido.data}

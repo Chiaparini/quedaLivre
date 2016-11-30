@@ -43,7 +43,8 @@ public class PedidoRepository {
 	
 	@SuppressWarnings("unchecked")
 	public List<Pedido> buscaTodosAberto() {
-		Query query = this.manager.createQuery(" FROM Pedido WHERE status = 'aberto'");
+		Query query = this.manager.createQuery(" FROM Pedido p "
+				+ "JOIN FETCH p.usuario WHERE p.status = 'aberto'");
 		return query.getResultList();
 	}
 	
